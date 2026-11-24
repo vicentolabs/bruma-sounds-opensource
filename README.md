@@ -12,7 +12,7 @@
   <img src="docs/screenshots/bruma-home.png" alt="Pantalla principal de Bruma con la mezcla actual y la lista de sonidos" width="320" />
 </p>
 
-Bruma toma su nombre de esa neblina ligera que crea un ambiente tranquilo sin imponerse. El proyecto se comparte para que cualquiera pueda usarlo, estudiar cómo está hecho y, si le apetece, contribuir.
+Bruma nació de una frustración personal: estaba cansado de no encontrar en F-Droid ni en Play Store una app gratuita y sin anuncios para acompañar mi música con sonidos de fondo. Hice una sencilla y comparto el código para que cualquiera pueda usarla y contribuir. Su nombre evoca una bruma ligera: un fondo que acompaña sin imponerse.
 
 ## Descarga
 

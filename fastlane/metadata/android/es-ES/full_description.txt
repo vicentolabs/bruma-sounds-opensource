@@ -1,0 +1,20 @@
+Bruma reproduce sonidos ambientales en segundo plano para acompañar la música
+que escuchas en otras aplicaciones de Android. Puedes mezclar varias pistas
+y ajustar el volumen de cada una.
+
+Nació de la búsqueda de una app gratuita, sencilla y sin anuncios para
+acompañar la música con sonidos de fondo. El código se comparte para que
+cualquiera pueda usarlo, estudiarlo y contribuir.
+
+Incluye 21 grabaciones locales: lluvia, tormenta, fuego, río, océano, viento,
+ventiladores, sonidos de ambiente y ruidos de distintos colores.
+
+También incluye favoritos, filtros por categoría, escenas rápidas, controles
+en la notificación y un temporizador con atenuación gradual.
+
+No necesita conexión a Internet para reproducir. La reproducción simultánea
+con otras aplicaciones puede variar según el dispositivo y la versión de
+Android.
+
+El código se distribuye bajo MIT. Las grabaciones son CC0; sus fuentes están
+documentadas en AUDIO_CREDITS.md.
