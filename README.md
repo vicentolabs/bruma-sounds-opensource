@@ -4,7 +4,7 @@
 
 <h1 align="center">Bruma</h1>
 
-<p align="center">Aplicación Android gratuita y de código abierto para escuchar y mezclar sonidos ambientales.</p>
+<p align="center">App Android gratuita y de código abierto para acompañar la música que escuchas con sonidos ambientales de fondo.</p>
 
 <p align="center"><strong>Sin publicidad ni AI slop.</strong><br>Una app sencilla, optimizada y hecha para usar.</p>
 
@@ -13,6 +13,12 @@
 </p>
 
 Bruma toma su nombre de esa neblina ligera que crea un ambiente tranquilo sin imponerse. El proyecto se comparte para que cualquiera pueda usarlo, estudiar cómo está hecho y, si le apetece, contribuir.
+
+## Descarga
+
+**Versión actual: 1.0.11.** El APK disponible es una compilación de depuración para pruebas, no una versión firmada para distribución de producción.
+
+[Descargar Bruma 1.0.11 (APK de depuración)](https://github.com/vicentolabs/bruma-sounds-opensource/releases/tag/v1.0.11-debug)
 
 ## Incluye
 
