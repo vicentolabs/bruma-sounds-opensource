@@ -1,3 +1,138 @@
 <resources>
     <string name="app_name">Bruma</string>
+
+    <string name="brand_tagline">Un lugar para bajar el ruido</string>
+    <string name="status_playing">SONANDO</string>
+    <string name="hero_eyebrow">TU REFUGIO SONORO</string>
+    <string name="hero_headline">Hazle sitio\na la calma.</string>
+    <string name="hero_description">Mezcla sonidos y deja que te acompañen.</string>
+    <string name="hero_start_label">PARA EMPEZAR</string>
+    <string name="hero_mix_label">TU MEZCLA</string>
+    <string name="hero_default_mix">Empieza con lluvia suave</string>
+    <string name="hero_mix_count">Sonidos en la mezcla: %1$d</string>
+
+    <string name="action_pause_sounds">Pausar sonidos</string>
+    <string name="action_play_sounds">Reproducir sonidos</string>
+    <string name="action_use">Usar</string>
+    <string name="action_apply">Aplicar</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="action_close">Cerrar</string>
+
+    <string name="section_find_sound_title">Encuentra tu sonido</string>
+    <string name="section_find_sound_subtitle">Toca varios sonidos para mezclarlos y ajustar cada capa.</string>
+    <string name="section_scenes_title">Escenas para llevarte</string>
+    <string name="section_scenes_subtitle">Mezclas locales de lluvia, tormenta, fuego, mar y cabina.</string>
+    <string name="recordings_offline">Grabaciones reales · disponibles sin conexión</string>
+    <string name="audio_sources_licenses">Fuentes y licencias</string>
+
+    <string name="filter_all">Todo</string>
+    <string name="filter_nature">Naturaleza</string>
+    <string name="filter_noise">Ruido</string>
+    <string name="filter_ambience">Ambiente</string>
+    <string name="filter_favorites">Favoritos</string>
+
+    <string name="mix_current">MEZCLA ACTUAL</string>
+    <string name="mix_adjust_layers">Ajusta cada capa</string>
+    <string name="master_volume">Volumen general</string>
+    <string name="sound_in_mix">En tu mezcla</string>
+    <string name="empty_favorites">Aún no tienes favoritos. Toca el corazón de un sonido para guardarlo aquí.</string>
+    <string name="scene_label">ESCENA</string>
+    <string name="scene_local_mix">MEZCLA LOCAL</string>
+
+    <string name="accessibility_sound_in_mix">Sonido incluido en la mezcla</string>
+    <string name="accessibility_add_to_mix">Añadir a la mezcla</string>
+    <string name="accessibility_remove_favorite">Quitar de favoritos</string>
+    <string name="accessibility_add_favorite">Añadir a favoritos</string>
+    <string name="accessibility_remove_from_mix">Quitar sonido de la mezcla</string>
+
+    <string name="timer_schedule">Programar</string>
+    <string name="timer_starting_in">%1$s al iniciar</string>
+    <string name="timer_format_hours_minutes">%1$dh %2$d min</string>
+    <string name="timer_format_hours">%1$dh</string>
+    <string name="timer_format_minutes">%1$d min</string>
+    <plurals name="timer_format_seconds">
+        <item quantity="one">%1$d segundo</item>
+        <item quantity="other">%1$d segundos</item>
+        <item quantity="many">%1$d segundos</item>
+    </plurals>
+    <string name="timer_title">Programar duración</string>
+    <string name="timer_description">La mezcla bajará suavemente de volumen y se detendrá al terminar.</string>
+    <string name="timer_off">Desactivado</string>
+    <string name="timer_short_minutes">%1$d min</string>
+    <string name="timer_use_quick_times">Volver a tiempos rápidos</string>
+    <string name="timer_customize">Personalizar duración</string>
+    <string name="timer_choose_duration">Elige cualquier duración en horas y minutos.</string>
+    <string name="timer_hours">Horas</string>
+    <string name="timer_minutes">Minutos</string>
+    <string name="timer_disabled">El temporizador quedará desactivado.</string>
+    <string name="timer_turns_off_in">Se apagará en %1$s.</string>
+
+    <string name="audio_credits_title">Fuentes de audio</string>
+    <string name="audio_credits_description">Grabaciones descargadas y empaquetadas para escuchar sin conexión. Las fuentes se publican bajo CC0.</string>
+    <string name="audio_credits_view_source">Ver fuente</string>
+
+    <string name="notification_title">Bruma · Sonidos de fondo</string>
+    <string name="notification_default_sounds">Sonidos ambientales</string>
+    <string name="notification_pause">Pausar</string>
+    <string name="notification_stop">Detener</string>
+    <string name="notification_channel_name">Reproducción de Bruma</string>
+    <string name="notification_channel_description">Controles para los sonidos ambientales en segundo plano</string>
+
+    <string name="sound_rain_title">Lluvia suave</string>
+    <string name="sound_rain_description">Gotas de lluvia sobre un charco</string>
+    <string name="sound_storm_title">Tormenta</string>
+    <string name="sound_storm_description">Lluvia intensa y truenos lejanos</string>
+    <string name="sound_fire_title">Chimenea</string>
+    <string name="sound_fire_description">Crepitar cálido de un fuego lento</string>
+    <string name="sound_wood_fire_title">Fuego de leña</string>
+    <string name="sound_wood_fire_description">Llamas y crepitar de una hoguera</string>
+    <string name="sound_river_title">Río</string>
+    <string name="sound_river_description">Corriente de agua entre piedras</string>
+    <string name="sound_ocean_title">Océano</string>
+    <string name="sound_ocean_description">Oleaje real y espuma en la costa</string>
+    <string name="sound_wind_title">Viento</string>
+    <string name="sound_wind_description">Ráfagas entre los árboles</string>
+    <string name="sound_blizzard_title">Ventisca</string>
+    <string name="sound_blizzard_description">Viento invernal y nieve azotando</string>
+    <string name="sound_fan_title">Ventilador</string>
+    <string name="sound_fan_description">Zumbido constante y suave</string>
+    <string name="sound_heater_title">Ventilador calefactor</string>
+    <string name="sound_heater_description">Ventilación real de una bomba de calor</string>
+    <string name="sound_ac_title">Aire acondicionado</string>
+    <string name="sound_ac_description">Unidad portátil de climatización</string>
+    <string name="sound_datacenter_title">Centro de datos</string>
+    <string name="sound_datacenter_description">Servidores, discos y ventiladores</string>
+    <string name="sound_extractor_title">Extractor de cocina</string>
+    <string name="sound_extractor_description">Campana extractora en funcionamiento</string>
+    <string name="sound_extractor_steady_title">Extractor fijo</string>
+    <string name="sound_extractor_steady_description">Campana a velocidad constante</string>
+    <string name="sound_cabin_title">Cabina de avión</string>
+    <string name="sound_cabin_description">Rumor grave de un vuelo nocturno</string>
+    <string name="sound_driving_title">Conduciendo</string>
+    <string name="sound_driving_description">Motor y carretera desde el habitáculo</string>
+    <string name="sound_car_title">Lluvia en el coche</string>
+    <string name="sound_car_description">Lluvia grabada desde el interior</string>
+    <string name="sound_brown_noise_title">Ruido marrón</string>
+    <string name="sound_brown_noise_description">Grave, profundo y uniforme</string>
+    <string name="sound_pink_noise_title">Ruido rosa</string>
+    <string name="sound_pink_noise_description">Equilibrado para descansar o concentrarte</string>
+    <string name="sound_white_noise_title">Ruido blanco</string>
+    <string name="sound_white_noise_description">Hiss uniforme de banda ancha</string>
+    <string name="sound_grey_noise_title">Ruido gris</string>
+    <string name="sound_grey_noise_description">Textura suave de balance tonal</string>
+
+    <string name="scene_flight_title">Noche en vuelo</string>
+    <string name="scene_flight_description">Cabina de avión + ruido marrón</string>
+    <string name="scene_fire_rain_title">Lumbre bajo la lluvia</string>
+    <string name="scene_fire_rain_description">Chimenea, lluvia y truenos</string>
+    <string name="scene_storm_sea_title">Tormenta en el mar</string>
+    <string name="scene_storm_sea_description">Oleaje profundo + tormenta lejana</string>
+    <string name="scene_rain_car_title">Lluvia en el coche</string>
+    <string name="scene_rain_car_description">Tormenta grabada desde el interior del coche</string>
+    <string name="scene_blizzard_night_title">Noche de ventisca</string>
+    <string name="scene_blizzard_night_description">Viento helado + ruido marrón</string>
+    <string name="scene_road_trip_title">Trayecto en coche</string>
+    <string name="scene_road_trip_description">Motor real y carretera a 80 km/h</string>
+    <string name="scene_data_center_title">Centro de datos</string>
+    <string name="scene_data_center_description">Discos y ventiladores de servidor</string>
 </resources>

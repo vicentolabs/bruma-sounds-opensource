@@ -184,9 +184,9 @@ class AmbientAudioService : Service() {
     private fun buildNotification(): Notification {
         val state = PlaybackStore.state.value
         val activeNames = state.activeSoundIds
-            .mapNotNull { SoundCatalog.byId[it]?.title }
+            .mapNotNull { SoundCatalog.byId[it]?.let { sound -> getString(sound.titleRes) } }
             .joinToString(" · ")
-            .ifBlank { "Sonidos ambientales" }
+            .ifBlank { getString(R.string.notification_default_sounds) }
         val openApp = PendingIntent.getActivity(
             this,
             REQUEST_OPEN_APP,
@@ -198,15 +198,15 @@ class AmbientAudioService : Service() {
 
         return NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_stat_bruma)
-            .setContentTitle("Bruma · Sonidos de fondo")
+            .setContentTitle(getString(R.string.notification_title))
             .setContentText(activeNames)
             .setContentIntent(openApp)
             .setCategory(NotificationCompat.CATEGORY_TRANSPORT)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setOngoing(state.isPlaying)
             .setOnlyAlertOnce(true)
-            .addAction(android.R.drawable.ic_media_pause, "Pausar", pause)
-            .addAction(android.R.drawable.ic_menu_close_clear_cancel, "Detener", stop)
+            .addAction(android.R.drawable.ic_media_pause, getString(R.string.notification_pause), pause)
+            .addAction(android.R.drawable.ic_menu_close_clear_cancel, getString(R.string.notification_stop), stop)
             .build()
     }
 
@@ -235,10 +235,10 @@ class AmbientAudioService : Service() {
     private fun createNotificationChannel() {
         val channel = NotificationChannel(
             CHANNEL_ID,
-            "Reproducción de Bruma",
+            getString(R.string.notification_channel_name),
             NotificationManager.IMPORTANCE_LOW,
         ).apply {
-            description = "Controles para los sonidos ambientales en segundo plano"
+            description = getString(R.string.notification_channel_description)
             setShowBadge(false)
             setSound(null, null)
             enableVibration(false)

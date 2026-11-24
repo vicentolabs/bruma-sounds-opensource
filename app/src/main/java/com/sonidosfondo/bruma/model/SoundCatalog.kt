@@ -1,5 +1,8 @@
 package com.sonidosfondo.bruma.model
 
+import androidx.annotation.StringRes
+import com.sonidosfondo.bruma.R
+
 enum class SoundCategory {
     NATURE,
     NOISE,
@@ -8,35 +11,35 @@ enum class SoundCategory {
 
 data class Soundscape(
     val id: String,
-    val title: String,
-    val description: String,
+    @StringRes val titleRes: Int,
+    @StringRes val descriptionRes: Int,
     val category: SoundCategory,
     val defaultVolume: Float = 0.68f,
 )
 
 object SoundCatalog {
     val sounds = listOf(
-        Soundscape("rain", "Lluvia suave", "Gotas de lluvia sobre un charco", SoundCategory.NATURE),
-        Soundscape("storm", "Tormenta", "Lluvia intensa y truenos lejanos", SoundCategory.NATURE),
-        Soundscape("fire", "Chimenea", "Crepitar cálido de un fuego lento", SoundCategory.NATURE),
-        Soundscape("wood-fire", "Fuego de leña", "Llamas y crepitar de una hoguera", SoundCategory.NATURE),
-        Soundscape("river", "Río", "Corriente de agua entre piedras", SoundCategory.NATURE),
-        Soundscape("ocean", "Océano", "Oleaje real y espuma en la costa", SoundCategory.NATURE),
-        Soundscape("wind", "Viento", "Ráfagas entre los árboles", SoundCategory.NATURE),
-        Soundscape("blizzard", "Ventisca", "Viento invernal y nieve azotando", SoundCategory.NATURE),
-        Soundscape("fan", "Ventilador", "Zumbido constante y suave", SoundCategory.AMBIENCE),
-        Soundscape("heater", "Ventilador calefactor", "Ventilación real de una bomba de calor", SoundCategory.AMBIENCE),
-        Soundscape("ac", "Aire acondicionado", "Unidad portátil de climatización", SoundCategory.AMBIENCE),
-        Soundscape("datacenter", "Centro de datos", "Servidores, discos y ventiladores", SoundCategory.AMBIENCE),
-        Soundscape("extractor", "Extractor de cocina", "Campana extractora en funcionamiento", SoundCategory.AMBIENCE),
-        Soundscape("extractor-steady", "Extractor fijo", "Campana a velocidad constante", SoundCategory.AMBIENCE),
-        Soundscape("cabin", "Cabina de avión", "Rumor grave de un vuelo nocturno", SoundCategory.AMBIENCE),
-        Soundscape("driving", "Conduciendo", "Motor y carretera desde el habitáculo", SoundCategory.AMBIENCE),
-        Soundscape("car", "Lluvia en el coche", "Lluvia grabada desde el interior", SoundCategory.AMBIENCE),
-        Soundscape("brown", "Ruido marrón", "Grave, profundo y uniforme", SoundCategory.NOISE),
-        Soundscape("pink", "Ruido rosa", "Equilibrado para descansar o concentrarte", SoundCategory.NOISE),
-        Soundscape("white", "Ruido blanco", "Hiss uniforme de banda ancha", SoundCategory.NOISE),
-        Soundscape("grey", "Ruido gris", "Textura suave de balance tonal", SoundCategory.NOISE),
+        Soundscape("rain", R.string.sound_rain_title, R.string.sound_rain_description, SoundCategory.NATURE),
+        Soundscape("storm", R.string.sound_storm_title, R.string.sound_storm_description, SoundCategory.NATURE),
+        Soundscape("fire", R.string.sound_fire_title, R.string.sound_fire_description, SoundCategory.NATURE),
+        Soundscape("wood-fire", R.string.sound_wood_fire_title, R.string.sound_wood_fire_description, SoundCategory.NATURE),
+        Soundscape("river", R.string.sound_river_title, R.string.sound_river_description, SoundCategory.NATURE),
+        Soundscape("ocean", R.string.sound_ocean_title, R.string.sound_ocean_description, SoundCategory.NATURE),
+        Soundscape("wind", R.string.sound_wind_title, R.string.sound_wind_description, SoundCategory.NATURE),
+        Soundscape("blizzard", R.string.sound_blizzard_title, R.string.sound_blizzard_description, SoundCategory.NATURE),
+        Soundscape("fan", R.string.sound_fan_title, R.string.sound_fan_description, SoundCategory.AMBIENCE),
+        Soundscape("heater", R.string.sound_heater_title, R.string.sound_heater_description, SoundCategory.AMBIENCE),
+        Soundscape("ac", R.string.sound_ac_title, R.string.sound_ac_description, SoundCategory.AMBIENCE),
+        Soundscape("datacenter", R.string.sound_datacenter_title, R.string.sound_datacenter_description, SoundCategory.AMBIENCE),
+        Soundscape("extractor", R.string.sound_extractor_title, R.string.sound_extractor_description, SoundCategory.AMBIENCE),
+        Soundscape("extractor-steady", R.string.sound_extractor_steady_title, R.string.sound_extractor_steady_description, SoundCategory.AMBIENCE),
+        Soundscape("cabin", R.string.sound_cabin_title, R.string.sound_cabin_description, SoundCategory.AMBIENCE),
+        Soundscape("driving", R.string.sound_driving_title, R.string.sound_driving_description, SoundCategory.AMBIENCE),
+        Soundscape("car", R.string.sound_car_title, R.string.sound_car_description, SoundCategory.AMBIENCE),
+        Soundscape("brown", R.string.sound_brown_noise_title, R.string.sound_brown_noise_description, SoundCategory.NOISE),
+        Soundscape("pink", R.string.sound_pink_noise_title, R.string.sound_pink_noise_description, SoundCategory.NOISE),
+        Soundscape("white", R.string.sound_white_noise_title, R.string.sound_white_noise_description, SoundCategory.NOISE),
+        Soundscape("grey", R.string.sound_grey_noise_title, R.string.sound_grey_noise_description, SoundCategory.NOISE),
     )
 
     val byId = sounds.associateBy(Soundscape::id)
@@ -44,8 +47,8 @@ object SoundCatalog {
 
 data class ScenePreset(
     val id: String,
-    val title: String,
-    val description: String,
+    @StringRes val titleRes: Int,
+    @StringRes val descriptionRes: Int,
     val soundIds: List<String>,
 )
 
@@ -53,44 +56,44 @@ object SceneCatalog {
     val scenes = listOf(
         ScenePreset(
             id = "flight",
-            title = "Noche en vuelo",
-            description = "Cabina de avión + ruido marrón",
+            titleRes = R.string.scene_flight_title,
+            descriptionRes = R.string.scene_flight_description,
             soundIds = listOf("cabin", "brown"),
         ),
         ScenePreset(
             id = "fire-rain",
-            title = "Lumbre bajo la lluvia",
-            description = "Chimenea, lluvia y truenos",
+            titleRes = R.string.scene_fire_rain_title,
+            descriptionRes = R.string.scene_fire_rain_description,
             soundIds = listOf("fire", "rain", "storm"),
         ),
         ScenePreset(
             id = "storm-sea",
-            title = "Tormenta en el mar",
-            description = "Oleaje profundo + tormenta lejana",
+            titleRes = R.string.scene_storm_sea_title,
+            descriptionRes = R.string.scene_storm_sea_description,
             soundIds = listOf("ocean", "storm"),
         ),
         ScenePreset(
             id = "rain-car",
-            title = "Lluvia en el coche",
-            description = "Tormenta grabada desde el interior del coche",
+            titleRes = R.string.scene_rain_car_title,
+            descriptionRes = R.string.scene_rain_car_description,
             soundIds = listOf("car"),
         ),
         ScenePreset(
             id = "blizzard-night",
-            title = "Noche de ventisca",
-            description = "Viento helado + ruido marrón",
+            titleRes = R.string.scene_blizzard_night_title,
+            descriptionRes = R.string.scene_blizzard_night_description,
             soundIds = listOf("blizzard", "brown"),
         ),
         ScenePreset(
             id = "road-trip",
-            title = "Trayecto en coche",
-            description = "Motor real y carretera a 80 km/h",
+            titleRes = R.string.scene_road_trip_title,
+            descriptionRes = R.string.scene_road_trip_description,
             soundIds = listOf("driving"),
         ),
         ScenePreset(
             id = "data-center",
-            title = "Centro de datos",
-            description = "Discos y ventiladores de servidor",
+            titleRes = R.string.scene_data_center_title,
+            descriptionRes = R.string.scene_data_center_description,
             soundIds = listOf("datacenter"),
         ),
     )

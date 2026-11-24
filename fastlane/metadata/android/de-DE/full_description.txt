@@ -1,0 +1,23 @@
+Bruma spielt Umgebungsgeräusche im Hintergrund ab und begleitet damit Musik
+aus anderen Android-Apps. Mische mehrere Klänge und passe jede Ebene einzeln
+an.
+
+Bruma entstand aus dem Wunsch nach einer einfachen, kostenlosen und
+werbefreien App, die Hintergrundgeräusche mit Musik mischt. Der Quellcode ist
+offen, damit alle die App nutzen, verstehen und verbessern können.
+
+Die Oberfläche ist auf Spanisch, Englisch, Deutsch, vereinfachtem Chinesisch
+und Russisch verfügbar. Sie folgt der Gerätesprache. Ab Android 13 lässt sich
+Brumas Sprache auch in den Systemeinstellungen auswählen.
+
+Enthalten sind 21 Offline-Aufnahmen: Regen, Sturm, Feuer, Fluss, Ozean, Wind,
+Ventilatoren, Umgebungsgeräusche und verschiedenfarbiges Rauschen.
+
+Zur App gehören Favoriten, Kategorienfilter, fertige Klangwelten,
+Benachrichtigungssteuerung und ein Timer mit sanftem Ausblenden.
+
+Für die Wiedergabe ist keine Internetverbindung nötig. Gleichzeitige
+Wiedergabe mit anderen Apps kann je nach Gerät und Android-Version variieren.
+
+Der Quellcode steht unter MIT. Die Aufnahmen sind CC0-lizenziert; ihre Quellen
+sind in AUDIO_CREDITS.md aufgeführt.

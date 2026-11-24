@@ -2,6 +2,8 @@
   <img src="docs/images/bruma-logo.svg" alt="Logo de Bruma" width="96" />
 </p>
 
+<p align="center"><a href="README.md">Español</a> · <a href="README.en.md">English</a> · <a href="README.de.md">Deutsch</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.ru.md">Русский</a></p>
+
 <h1 align="center">Bruma</h1>
 
 <p align="center">App Android gratuita y de código abierto para acompañar la música que escuchas con sonidos ambientales de fondo.</p>
@@ -14,11 +16,13 @@
 
 Bruma nació de una frustración personal: estaba cansado de no encontrar en F-Droid ni en Play Store una app gratuita y sin anuncios para acompañar mi música con sonidos de fondo. Hice una sencilla y comparto el código para que cualquiera pueda usarla y contribuir. Su nombre evoca una bruma ligera: un fondo que acompaña sin imponerse.
 
+La interfaz está disponible en español, inglés, alemán, chino simplificado y ruso. Sigue el idioma del sistema; en Android 13 o posterior también se puede elegir el idioma de Bruma desde los ajustes de la app.
+
 ## Descarga
 
-**Versión actual: 1.0.11.** El APK disponible es una compilación de depuración para pruebas, no una versión firmada para distribución de producción.
+**Versión actual: 1.0.12.** El APK disponible es una compilación de depuración para pruebas, no una versión firmada para distribución de producción.
 
-[Descargar Bruma 1.0.11 (APK de depuración)](https://github.com/vicentolabs/bruma-sounds-opensource/releases/tag/v1.0.11-debug)
+[Descargar Bruma 1.0.12 (APK de depuración)](https://github.com/vicentolabs/bruma-sounds-opensource/releases/tag/v1.0.12-debug)
 
 ## Incluye
 
@@ -30,7 +34,7 @@ Bruma nació de una frustración personal: estaba cansado de no encontrar en F-D
 
 ## Contribuir
 
-Si te apetece colaborar, puedes abrir una issue para informar de un error o proponer una idea, o enviar un pull request. Las preguntas y aportaciones de cualquier tamaño son bienvenidas.
+Si te apetece colaborar, puedes abrir una issue para informar de un error o proponer una idea, o enviar un pull request. También puedes ayudar a revisar las traducciones. Las preguntas y aportaciones de cualquier tamaño son bienvenidas.
 
 ## Audio y referencias
 

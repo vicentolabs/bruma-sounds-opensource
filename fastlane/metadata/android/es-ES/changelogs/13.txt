@@ -1,0 +1,1 @@
+Bruma 1.0.12 incorpora la interfaz en inglés, alemán, chino simplificado y ruso.

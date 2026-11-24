@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
+import androidx.annotation.StringRes
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.BorderStroke
@@ -84,12 +85,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.core.content.ContextCompat
+import com.sonidosfondo.bruma.R
 import com.sonidosfondo.bruma.audio.AmbientAudioService
 import com.sonidosfondo.bruma.audio.PlaybackState
 import com.sonidosfondo.bruma.audio.PlaybackStore
@@ -101,12 +107,12 @@ import com.sonidosfondo.bruma.model.SoundCategory
 import com.sonidosfondo.bruma.model.Soundscape
 import kotlinx.coroutines.delay
 
-private enum class SoundFilter(val label: String) {
-    ALL("Todo"),
-    NATURE("Naturaleza"),
-    NOISE("Ruido"),
-    AMBIENCE("Ambiente"),
-    FAVORITES("Favoritos"),
+private enum class SoundFilter(@StringRes val labelRes: Int) {
+    ALL(R.string.filter_all),
+    NATURE(R.string.filter_nature),
+    NOISE(R.string.filter_noise),
+    AMBIENCE(R.string.filter_ambience),
+    FAVORITES(R.string.filter_favorites),
 }
 
 @Composable
@@ -190,8 +196,8 @@ fun BrumaScreen() {
 
         item {
             SectionHeading(
-                title = "Encuentra tu sonido",
-                subtitle = "Toca varios sonidos para mezclarlos y ajustar cada capa.",
+                title = stringResource(R.string.section_find_sound_title),
+                subtitle = stringResource(R.string.section_find_sound_subtitle),
             )
         }
 
@@ -242,8 +248,8 @@ fun BrumaScreen() {
 
         item {
             SectionHeading(
-                title = "Escenas para llevarte",
-                subtitle = "Mezclas locales de lluvia, tormenta, fuego, mar y cabina.",
+                title = stringResource(R.string.section_scenes_title),
+                subtitle = stringResource(R.string.section_scenes_subtitle),
             )
         }
 
@@ -271,13 +277,13 @@ fun BrumaScreen() {
         item {
             Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth().padding(top = 2.dp)) {
                 Text(
-                    text = "Grabaciones reales · disponibles sin conexión",
+                    text = stringResource(R.string.recordings_offline),
                     color = BrumaMuted.copy(alpha = 0.78f),
                     fontSize = 11.sp,
                     lineHeight = 16.sp,
                 )
                 TextButton(onClick = { showCreditsDialog = true }) {
-                    Text("Fuentes y licencias", color = BrumaAccent, fontSize = 12.sp)
+                    Text(stringResource(R.string.audio_sources_licenses), color = BrumaAccent, fontSize = 12.sp)
                 }
             }
         }
@@ -331,7 +337,7 @@ private fun BrandHeader(isPlaying: Boolean) {
                 letterSpacing = 2.4.sp,
             )
             Text(
-                text = "UN LUGAR PARA BAJAR EL RUIDO",
+                text = stringResource(R.string.brand_tagline),
                 color = BrumaMuted,
                 fontSize = 9.sp,
                 letterSpacing = 1.05.sp,
@@ -348,7 +354,7 @@ private fun BrandHeader(isPlaying: Boolean) {
             ) {
                 Box(Modifier.size(6.dp).clip(CircleShape).background(BrumaAccent))
                 Spacer(Modifier.width(7.dp))
-                Text("SONANDO", color = BrumaAccent, fontSize = 9.sp, fontWeight = FontWeight.SemiBold, letterSpacing = 0.8.sp)
+                Text(stringResource(R.string.status_playing), color = BrumaAccent, fontSize = 9.sp, fontWeight = FontWeight.SemiBold, letterSpacing = 0.8.sp)
             }
         }
     }
@@ -356,11 +362,11 @@ private fun BrandHeader(isPlaying: Boolean) {
 
 @Composable
 private fun HeroCard(state: PlaybackState, onPlayToggle: () -> Unit) {
-    val selectedNames = state.activeSoundIds.mapNotNull { SoundCatalog.byId[it]?.title }
-    val mixTitle = when (selectedNames.size) {
-        0 -> "Empieza con lluvia suave"
-        1 -> selectedNames.first()
-        else -> "${selectedNames.size} sonidos en armonía"
+    val selectedSounds = state.activeSoundIds.mapNotNull { SoundCatalog.byId[it] }
+    val mixTitle = when (selectedSounds.size) {
+        0 -> stringResource(R.string.hero_default_mix)
+        1 -> stringResource(selectedSounds.first().titleRes)
+        else -> stringResource(R.string.hero_mix_count, selectedSounds.size)
     }
 
     Box(
@@ -413,12 +419,12 @@ private fun HeroCard(state: PlaybackState, onPlayToggle: () -> Unit) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Box(Modifier.size(7.dp).clip(CircleShape).background(BrumaAccent))
                 Spacer(Modifier.width(8.dp))
-                Text("TU REFUGIO SONORO", color = BrumaAccent, fontSize = 10.sp, fontWeight = FontWeight.SemiBold, letterSpacing = 1.45.sp)
+                Text(stringResource(R.string.hero_eyebrow), color = BrumaAccent, fontSize = 10.sp, fontWeight = FontWeight.SemiBold, letterSpacing = 1.45.sp)
             }
 
             Column(modifier = Modifier.fillMaxWidth(0.84f)) {
                 Text(
-                    text = "Hazle sitio\na la calma.",
+                    text = stringResource(R.string.hero_headline),
                     color = BrumaText,
                     fontSize = 31.sp,
                     lineHeight = 35.sp,
@@ -427,7 +433,7 @@ private fun HeroCard(state: PlaybackState, onPlayToggle: () -> Unit) {
                 )
                 Spacer(Modifier.height(8.dp))
                 Text(
-                    text = "Mezcla sonidos y deja que te acompañen.",
+                    text = stringResource(R.string.hero_description),
                     color = BrumaText.copy(alpha = 0.76f),
                     fontSize = 13.sp,
                     lineHeight = 18.sp,
@@ -437,7 +443,7 @@ private fun HeroCard(state: PlaybackState, onPlayToggle: () -> Unit) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = if (state.activeSoundIds.isEmpty()) "PARA EMPEZAR" else "TU MEZCLA",
+                        text = stringResource(if (state.activeSoundIds.isEmpty()) R.string.hero_start_label else R.string.hero_mix_label),
                         color = BrumaText.copy(alpha = 0.62f),
                         fontSize = 9.sp,
                         fontWeight = FontWeight.SemiBold,
@@ -452,7 +458,7 @@ private fun HeroCard(state: PlaybackState, onPlayToggle: () -> Unit) {
                 ) {
                     Icon(
                         imageVector = if (state.isPlaying) Icons.Rounded.Pause else Icons.Rounded.PlayArrow,
-                        contentDescription = if (state.isPlaying) "Pausar sonidos" else "Reproducir sonidos",
+                        contentDescription = stringResource(if (state.isPlaying) R.string.action_pause_sounds else R.string.action_play_sounds),
                         tint = Color(0xFF1D2A1B),
                         modifier = Modifier.size(27.dp),
                     )
@@ -482,14 +488,15 @@ private fun MixPanel(
         val hours = seconds / 3_600L
         val minutes = (seconds % 3_600L) / 60L
         when {
-            hours > 0L -> "${hours}h ${minutes}m"
-            minutes > 0L -> "${minutes}m"
-            else -> "${seconds}s"
+            hours > 0L && minutes > 0L -> stringResource(R.string.timer_format_hours_minutes, hours, minutes)
+            hours > 0L -> stringResource(R.string.timer_format_hours, hours)
+            minutes > 0L -> stringResource(R.string.timer_format_minutes, minutes)
+            else -> pluralStringResource(R.plurals.timer_format_seconds, seconds.toInt(), seconds)
         }
     } else if (state.timerMinutes > 0) {
-        "${formatTimerDuration(state.timerMinutes.toLong())} al iniciar"
+        stringResource(R.string.timer_starting_in, formatTimerDuration(state.timerMinutes.toLong()))
     } else {
-        "Programar"
+        stringResource(R.string.timer_schedule)
     }
 
     Surface(
@@ -501,9 +508,9 @@ private fun MixPanel(
         Column(Modifier.padding(horizontal = 17.dp, vertical = 16.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Column(modifier = Modifier.weight(1f)) {
-                    Text("MEZCLA ACTUAL", color = BrumaMuted, style = MaterialTheme.typography.labelSmall)
+                    Text(stringResource(R.string.mix_current), color = BrumaMuted, style = MaterialTheme.typography.labelSmall)
                     Spacer(Modifier.height(3.dp))
-                    Text("Ajusta cada capa", color = BrumaText, style = MaterialTheme.typography.titleMedium)
+                    Text(stringResource(R.string.mix_adjust_layers), color = BrumaText, style = MaterialTheme.typography.titleMedium)
                 }
                 TextButton(onClick = onTimerClick, contentPadding = PaddingValues(horizontal = 9.dp, vertical = 6.dp)) {
                     Icon(Icons.Rounded.Timer, contentDescription = null, tint = BrumaAccent, modifier = Modifier.size(17.dp))
@@ -528,7 +535,7 @@ private fun MixPanel(
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(Icons.AutoMirrored.Rounded.VolumeUp, contentDescription = null, tint = BrumaMuted, modifier = Modifier.size(18.dp))
                 Spacer(Modifier.width(8.dp))
-                Text("Volumen general", color = BrumaText, fontSize = 13.sp, modifier = Modifier.weight(1f))
+                Text(stringResource(R.string.master_volume), color = BrumaText, fontSize = 13.sp, modifier = Modifier.weight(1f))
                 Text("${(state.masterVolume * 100).toInt()}%", color = BrumaMuted, fontSize = 12.sp)
             }
             Slider(
@@ -566,7 +573,7 @@ private fun SoundVolumeRow(
         Spacer(Modifier.width(10.dp))
         Column(modifier = Modifier.weight(1f)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(sound.title, color = BrumaText, fontSize = 12.sp, fontWeight = FontWeight.Medium, modifier = Modifier.weight(1f))
+                Text(stringResource(sound.titleRes), color = BrumaText, fontSize = 12.sp, fontWeight = FontWeight.Medium, modifier = Modifier.weight(1f))
                 Text("${(volume * 100).toInt()}%", color = BrumaMuted, fontSize = 11.sp)
             }
             Slider(
@@ -582,7 +589,11 @@ private fun SoundVolumeRow(
             )
         }
         Spacer(Modifier.width(3.dp))
-        IconButton(onClick = onRemove, modifier = Modifier.size(36.dp)) {
+        val removeSoundDescription = stringResource(R.string.accessibility_remove_from_mix)
+        IconButton(
+            onClick = onRemove,
+            modifier = Modifier.size(36.dp).semantics { contentDescription = removeSoundDescription },
+        ) {
             Text("×", color = BrumaMuted, fontSize = 22.sp, lineHeight = 22.sp)
         }
     }
@@ -604,7 +615,7 @@ private fun FilterRow(selected: SoundFilter, onSelected: (SoundFilter) -> Unit) 
             FilterChip(
                 selected = selected == filter,
                 onClick = { onSelected(filter) },
-                label = { Text(filter.label, fontSize = 12.sp) },
+                label = { Text(stringResource(filter.labelRes), fontSize = 12.sp) },
                 shape = CircleShape,
                 colors = FilterChipDefaults.filterChipColors(),
             )
@@ -647,7 +658,7 @@ private fun SoundCard(
                 IconButton(onClick = onAddToMix, modifier = Modifier.size(36.dp)) {
                     Icon(
                         imageVector = if (selected) Icons.Rounded.Check else Icons.Rounded.Add,
-                        contentDescription = if (selected) "Sonido incluido en la mezcla" else "Añadir a la mezcla",
+                        contentDescription = stringResource(if (selected) R.string.accessibility_sound_in_mix else R.string.accessibility_add_to_mix),
                         tint = if (selected) BrumaAccent else BrumaMuted.copy(alpha = 0.75f),
                         modifier = Modifier.size(18.dp),
                     )
@@ -655,17 +666,17 @@ private fun SoundCard(
                 IconButton(onClick = onFavorite, modifier = Modifier.size(36.dp)) {
                     Icon(
                         imageVector = if (favorite) Icons.Rounded.Favorite else Icons.Rounded.FavoriteBorder,
-                        contentDescription = if (favorite) "Quitar de favoritos" else "Añadir a favoritos",
+                        contentDescription = stringResource(if (favorite) R.string.accessibility_remove_favorite else R.string.accessibility_add_favorite),
                         tint = if (favorite) Color(0xFFF09A91) else BrumaMuted.copy(alpha = 0.75f),
                         modifier = Modifier.size(17.dp),
                     )
                 }
             }
             Column {
-                Text(sound.title, color = BrumaText, fontSize = 14.sp, fontWeight = FontWeight.SemiBold, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                Text(stringResource(sound.titleRes), color = BrumaText, fontSize = 14.sp, fontWeight = FontWeight.SemiBold, maxLines = 1, overflow = TextOverflow.Ellipsis)
                 Spacer(Modifier.height(3.dp))
                 Text(
-                    text = if (selected) "En tu mezcla" else sound.description,
+                    text = if (selected) stringResource(R.string.sound_in_mix) else stringResource(sound.descriptionRes),
                     color = if (selected) BrumaAccent.copy(alpha = 0.9f) else BrumaMuted,
                     fontSize = 10.sp,
                     lineHeight = 14.sp,
@@ -685,7 +696,7 @@ private fun EmptyFavoritesCard() {
         color = BrumaSurface,
     ) {
         Text(
-            text = "Aún no tienes favoritos. Toca el corazón de un sonido para guardarlo aquí.",
+            text = stringResource(R.string.empty_favorites),
             color = BrumaMuted,
             fontSize = 13.sp,
             lineHeight = 19.sp,
@@ -732,21 +743,21 @@ private fun SceneCard(
                     Icon(icon, contentDescription = null, tint = accent, modifier = Modifier.size(21.dp))
                 }
                 Spacer(Modifier.weight(1f))
-                Text("ESCENA", color = BrumaMuted, fontSize = 9.sp, fontWeight = FontWeight.SemiBold, letterSpacing = 1.15.sp)
+                Text(stringResource(R.string.scene_label), color = BrumaMuted, fontSize = 9.sp, fontWeight = FontWeight.SemiBold, letterSpacing = 1.15.sp)
             }
             Spacer(Modifier.height(12.dp))
-            Text(scene.title, color = BrumaText, fontSize = 16.sp, fontWeight = FontWeight.SemiBold, maxLines = 1, overflow = TextOverflow.Ellipsis)
+            Text(stringResource(scene.titleRes), color = BrumaText, fontSize = 16.sp, fontWeight = FontWeight.SemiBold, maxLines = 1, overflow = TextOverflow.Ellipsis)
             Spacer(Modifier.height(3.dp))
-            Text(scene.description, color = BrumaMuted, fontSize = 11.sp, maxLines = 1, overflow = TextOverflow.Ellipsis)
+            Text(stringResource(scene.descriptionRes), color = BrumaMuted, fontSize = 11.sp, maxLines = 1, overflow = TextOverflow.Ellipsis)
             Spacer(Modifier.weight(1f))
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("MEZCLA LOCAL", color = BrumaMuted.copy(alpha = 0.9f), fontSize = 9.sp, fontWeight = FontWeight.SemiBold, letterSpacing = 0.8.sp, modifier = Modifier.weight(1f))
+                Text(stringResource(R.string.scene_local_mix), color = BrumaMuted.copy(alpha = 0.9f), fontSize = 9.sp, fontWeight = FontWeight.SemiBold, letterSpacing = 0.8.sp, modifier = Modifier.weight(1f))
                 Button(
                     onClick = onUse,
                     contentPadding = PaddingValues(horizontal = 12.dp, vertical = 6.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF2A3B32), contentColor = BrumaAccent),
                 ) {
-                    Text("Usar", fontSize = 11.sp)
+                    Text(stringResource(R.string.action_use), fontSize = 11.sp)
                 }
             }
         }
@@ -772,10 +783,10 @@ private fun TimerDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Programar duración", color = BrumaText) },
+        title = { Text(stringResource(R.string.timer_title), color = BrumaText) },
         text = {
             Column(modifier = Modifier.heightIn(max = 430.dp).verticalScroll(rememberScrollState())) {
-                Text("La mezcla bajará suavemente de volumen y se detendrá al terminar.", color = BrumaMuted, fontSize = 13.sp, lineHeight = 19.sp)
+                Text(stringResource(R.string.timer_description), color = BrumaMuted, fontSize = 13.sp, lineHeight = 19.sp)
                 Spacer(Modifier.height(16.dp))
                 options.chunked(3).forEach { rowOptions ->
                     Row(horizontalArrangement = Arrangement.spacedBy(7.dp)) {
@@ -788,7 +799,13 @@ private fun TimerDialog(
                                     hoursText = (minutes / 60).toString()
                                     minutesText = (minutes % 60).toString()
                                 },
-                                label = { Text(if (minutes == 0) "Off" else "${minutes}m", fontSize = 12.sp) },
+                                label = {
+                                    Text(
+                                        if (minutes == 0) stringResource(R.string.timer_off)
+                                        else stringResource(R.string.timer_short_minutes, minutes),
+                                        fontSize = 12.sp,
+                                    )
+                                },
                                 shape = CircleShape,
                                 colors = FilterChipDefaults.filterChipColors(),
                             )
@@ -799,17 +816,21 @@ private fun TimerDialog(
                     onClick = { customMode = !customMode },
                     contentPadding = PaddingValues(horizontal = 0.dp, vertical = 5.dp),
                 ) {
-                    Text(if (customMode) "Volver a tiempos rápidos" else "Personalizar duración", color = BrumaAccent, fontSize = 13.sp)
+                    Text(
+                        stringResource(if (customMode) R.string.timer_use_quick_times else R.string.timer_customize),
+                        color = BrumaAccent,
+                        fontSize = 13.sp,
+                    )
                 }
                 if (customMode) {
-                    Text("Elige cualquier duración en horas y minutos.", color = BrumaMuted, fontSize = 12.sp, lineHeight = 17.sp)
+                    Text(stringResource(R.string.timer_choose_duration), color = BrumaMuted, fontSize = 12.sp, lineHeight = 17.sp)
                     Spacer(Modifier.height(8.dp))
                     Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                         OutlinedTextField(
                             value = hoursText,
                             onValueChange = { hoursText = it.filter(Char::isDigit).take(8) },
                             modifier = Modifier.weight(1f),
-                            label = { Text("Horas") },
+                            label = { Text(stringResource(R.string.timer_hours)) },
                             singleLine = true,
                             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                         )
@@ -817,14 +838,18 @@ private fun TimerDialog(
                             value = minutesText,
                             onValueChange = { minutesText = it.filter(Char::isDigit).take(8) },
                             modifier = Modifier.weight(1f),
-                            label = { Text("Minutos") },
+                            label = { Text(stringResource(R.string.timer_minutes)) },
                             singleLine = true,
                             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                         )
                     }
                     Spacer(Modifier.height(6.dp))
                     Text(
-                        text = if (customMinutes == 0) "El temporizador quedará desactivado." else "Se apagará en ${formatTimerDuration(customMinutes.toLong())}.",
+                        text = if (customMinutes == 0) {
+                            stringResource(R.string.timer_disabled)
+                        } else {
+                            stringResource(R.string.timer_turns_off_in, formatTimerDuration(customMinutes.toLong()))
+                        },
                         color = BrumaMuted,
                         fontSize = 11.sp,
                     )
@@ -836,24 +861,25 @@ private fun TimerDialog(
                 onClick = { onApply(if (customMode) customMinutes else selected) },
                 colors = ButtonDefaults.buttonColors(containerColor = BrumaAccent, contentColor = Color(0xFF1D2A1B)),
             ) {
-                Text("Aplicar")
+                Text(stringResource(R.string.action_apply))
             }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text("Cancelar", color = BrumaMuted) }
+            TextButton(onClick = onDismiss) { Text(stringResource(R.string.action_cancel), color = BrumaMuted) }
         },
         containerColor = BrumaSurface,
         shape = RoundedCornerShape(26.dp),
     )
 }
 
+@Composable
 private fun formatTimerDuration(totalMinutes: Long): String {
     val hours = totalMinutes / 60L
     val minutes = totalMinutes % 60L
     return when {
-        hours > 0L && minutes > 0L -> "${hours}h ${minutes}m"
-        hours > 0L -> "${hours}h"
-        else -> "${minutes}m"
+        hours > 0L && minutes > 0L -> stringResource(R.string.timer_format_hours_minutes, hours, minutes)
+        hours > 0L -> stringResource(R.string.timer_format_hours, hours)
+        else -> stringResource(R.string.timer_format_minutes, minutes)
     }
 }
 
@@ -862,21 +888,22 @@ private fun AudioCreditsDialog(onDismiss: () -> Unit) {
     val context = LocalContext.current
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Fuentes de audio", color = BrumaText) },
+        title = { Text(stringResource(R.string.audio_credits_title), color = BrumaText) },
         text = {
             Column(
                 modifier = Modifier.heightIn(max = 430.dp).verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.spacedBy(7.dp),
             ) {
                 Text(
-                    "Grabaciones descargadas y empaquetadas para escuchar sin conexión. Las fuentes se publican bajo CC0.",
+                    stringResource(R.string.audio_credits_description),
                     color = BrumaMuted,
                     fontSize = 12.sp,
                     lineHeight = 17.sp,
                 )
                 AudioCredits.recordings.forEach { credit ->
+                    val soundName = SoundCatalog.byId[credit.soundId]?.let { stringResource(it.titleRes) } ?: credit.soundId
                     Column(modifier = Modifier.fillMaxWidth().padding(top = 5.dp)) {
-                        Text(credit.sound, color = BrumaText, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+                        Text(soundName, color = BrumaText, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
                         Text("${credit.recording} · ${credit.creator} · ${credit.license}", color = BrumaMuted, fontSize = 11.sp, lineHeight = 15.sp)
                         TextButton(
                             onClick = {
@@ -886,13 +913,13 @@ private fun AudioCreditsDialog(onDismiss: () -> Unit) {
                             },
                             contentPadding = PaddingValues(horizontal = 0.dp, vertical = 2.dp),
                         ) {
-                            Text("Ver fuente", color = BrumaAccent, fontSize = 11.sp)
+                            Text(stringResource(R.string.audio_credits_view_source), color = BrumaAccent, fontSize = 11.sp)
                         }
                     }
                 }
             }
         },
-        confirmButton = { TextButton(onClick = onDismiss) { Text("Cerrar", color = BrumaAccent) } },
+        confirmButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.action_close), color = BrumaAccent) } },
         containerColor = BrumaSurface,
         shape = RoundedCornerShape(26.dp),
     )
