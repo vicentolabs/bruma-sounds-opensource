@@ -1,6 +1,18 @@
-# Bruma · sonidos de fondo para Android
+<p align="center">
+  <img src="docs/images/bruma-logo.svg" alt="Logo de Bruma" width="96" />
+</p>
 
-**Bruma** es una app Android de paisajes sonoros para descansar, concentrarse o acompañar la música que escuchas en otras apps. Su nombre evoca una atmósfera suave y envolvente: un fondo que acompaña sin imponerse. Puedes combinar grabaciones reales, ajustar cada capa y seguir escuchando con la pantalla apagada.
+<h1 align="center">Bruma</h1>
+
+<p align="center">Aplicación Android gratuita y de código abierto para escuchar y mezclar sonidos ambientales.</p>
+
+<p align="center"><strong>Sin publicidad ni AI slop.</strong><br>Una app sencilla, optimizada y hecha para usar.</p>
+
+<p align="center">
+  <img src="docs/screenshots/bruma-home.png" alt="Pantalla principal de Bruma con la mezcla actual y la lista de sonidos" width="320" />
+</p>
+
+Bruma toma su nombre de esa neblina ligera que crea un ambiente tranquilo sin imponerse. El proyecto se comparte para que cualquiera pueda usarlo, estudiar cómo está hecho y, si le apetece, contribuir.
 
 ## Incluye
 
@@ -9,6 +21,10 @@
 - Servicio Android de reproducción en primer plano, controles en la notificación y temporizador personalizable en horas y minutos con atenuación gradual.
 - Favoritos guardados en el dispositivo, filtros por categoría y funcionamiento sin conexión.
 - Siete escenas rápidas: vuelo nocturno, chimenea con lluvia, tormenta en el mar, lluvia en el coche, ventisca nocturna, conducción y centro de datos.
+
+## Contribuir
+
+Si te apetece colaborar, puedes abrir una issue para informar de un error o proponer una idea, o enviar un pull request. Las preguntas y aportaciones de cualquier tamaño son bienvenidas.
 
 ## Audio y referencias
 
